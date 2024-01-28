@@ -62,7 +62,23 @@ namespace Sample
          */
         public static string AgeDescription(int age)
         {
-            throw new NotImplementedException();
+            string suffix  = "лет";
+            int lastNumber = age % 10;
+            int tensCount  = age / 10 % 10;
+
+            if (tensCount != 1)
+            {
+                if (lastNumber == 1)
+                {
+                    suffix = "год";
+                }
+                else if (lastNumber >= 2 && lastNumber <= 4)
+                {
+                   suffix = "года"; 
+                }
+            }
+            
+            return $"{age} {suffix}";
         }
 
         /**
@@ -80,8 +96,37 @@ namespace Sample
             int rookX2, int rookY2
         )
         {
-            throw new NotImplementedException();
+            (bool, bool) AnyRookHitTheKing = (CanHit(rookX1, rookY1), CanHit(rookX2, rookY2));
+
+            return AnyRookHitTheKing switch
+            {
+                (true, false) => 1,
+                (false, true) => 2,
+                (true, true) => 3,
+                _ => 0
+            };
+            
+            bool CanHit(int rookX, int rookY) => rookX == kingX || rookY == kingY;
         }
+        
+        /**
+         * Вариант метода WhichRookThreatens() на if-else конструкциях:
+
+            if (CanHit(rookX1, rookY1) && !CanHit(rookX2, rookY2))
+            {
+                return 1;
+            }
+            else if (CanHit(rookX2, rookY2) && !CanHit(rookX1, rookY1))
+            {
+                return 2;
+            }
+            else if (CanHit(rookX2, rookY2) && CanHit(rookX1, rookY1))
+            {
+                return 3;
+            }
+
+            return 0;
+        **/
 
         /**
          * Средняя (2 балла)
@@ -93,7 +138,23 @@ namespace Sample
          */
         public static int TriangleKind(double a, double b, double c)
         {
-            throw new NotImplementedException();
+            if (a + b > c && a + c > b && b + c > a)
+            {
+                if (Math.Pow(c, 2) > Math.Pow(a, 2) + Math.Pow(b, 2))
+                {
+                    return 2;
+                }
+                else if (Math.Pow(a, 2) == Math.Pow(b, 2) + Math.Pow(c, 2))
+                {
+                    return 1;
+                }
+                else if (Math.Pow(a, 2) < Math.Pow(b, 2) + Math.Pow(c, 2))
+                {
+                    return 0;
+                }
+            }
+
+            return -1;
         }
 
         /**
