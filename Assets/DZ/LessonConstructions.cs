@@ -165,7 +165,22 @@ namespace Sample
          */
         public static int Fibonacci(int n)
         {
-            throw new NotImplementedException();
+            if (n == 1 || n == 2)
+            {
+                return 1;
+            }
+
+            int currentFib = 1;
+            int prevFib = 1;
+
+            for (int i = 2; i < n; i++)
+            {
+                int temp = prevFib;
+                prevFib = currentFib;
+                currentFib = prevFib + temp;
+            }
+
+            return currentFib;
         }
 
         /**
