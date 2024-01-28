@@ -190,7 +190,18 @@ namespace Sample
          */
         public static int MinDivisor(int n)
         {
-            throw new NotImplementedException();
+            int minDivisor = 1;
+
+            for (int i = 2; i <= n; i++)
+            {
+                if (n % i == 0)
+                {
+                    minDivisor = i;
+                    break;
+                }
+            }
+
+            return minDivisor;
         }
 
         /**
