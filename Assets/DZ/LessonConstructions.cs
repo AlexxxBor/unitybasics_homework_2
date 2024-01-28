@@ -213,7 +213,15 @@ namespace Sample
          */
         public static int Revert(int n)
         {
-            throw new NotImplementedException();
+            int newNumber = 0;
+
+            while (n > 0)
+            {
+                newNumber = newNumber * 10 + n % 10;
+                n /= 10;
+            }
+
+            return newNumber;
         }
     }
 }
